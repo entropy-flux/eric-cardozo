@@ -4,8 +4,7 @@ import torch
 from src.models import ViT
 from src.models.SwissGLUViT import SwissGLUViT
 from src.models.CanonicalViT import CanonicalViT
-from src.models.GrandCanonicalViT import GrandCanonicalViT
-from src.models.TGCViT import GrandCanonicalTermalViT
+from src.models.GrandCanonicalViT import GrandCanonicalViT 
 from src.datasets.cifar import CIFAR
 from src.training import fit, evaluate
 
@@ -31,8 +30,8 @@ torch.backends.cudnn.benchmark = False
 register(ViT)
 register(SwissGLUViT)     
 register(CanonicalViT)  
-register(GrandCanonicalViT) 
-register(GrandCanonicalTermalViT)
+register(GrandCanonicalViT)  
+
 EPOCHS = 300
 
 def run(model: Module, loaders: dict, device: Device):
@@ -80,7 +79,7 @@ if __name__ == "__main__":
         "evaluation": DataLoader(CIFAR(train=False), batch_size=128, shuffle=False)
     }   
     
-    model = GrandCanonicalTermalViT(
+    model = GrandCanonicalViT(
         image_size=(32, 32),
         patch_size=(4, 4),
         model_dimension=64,
@@ -93,7 +92,7 @@ if __name__ == "__main__":
     ).to(device) 
     run(model, loaders, device)     
 
-    model = GrandCanonicalTermalViT(
+    model = GrandCanonicalViT(
         image_size=(32, 32),
         patch_size=(4, 4),
         model_dimension=64,
@@ -106,7 +105,7 @@ if __name__ == "__main__":
     ).to(device) 
     run(model, loaders, device)   
 
-    model = GrandCanonicalTermalViT(
+    model = GrandCanonicalViT(
         image_size=(32, 32),
         patch_size=(4, 4),
         model_dimension=128,
